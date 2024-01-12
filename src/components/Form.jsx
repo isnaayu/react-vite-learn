@@ -4,48 +4,34 @@ export default class Form extends Component {
     constructor(props){
         super(props)
         this.state = {
-            newItem: "",
-            list: []
+            text: ""
         }
     }
 
-    handleChange = (key, value) => {
+    handleChange = (e) => {
         this.setState({
-            [key]: value
+            text: e.target.value
         })
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault()
-        const newItem = {
-            id: 1+Math.random,
-            value: this.state.newItem.slice()
+    handleSubmit = (e) => {
+        e.preventDefault()
+        if(this.state.text){
+            this.props.onAddTodo(this.state.text)
+            this.setState({text: ''})
         }
-
-        const list = [...this.state.list]
-        list.push(newItem)
-        this.setState({
-            list
-        })
-
-        this.setState({
-            newItem: ''
-        })
     }
   render() {
-    let listItem = this.state.list.map((number)=>{
-        return <li key={number.id}>{number.value}</li>
-    })
+    // let listItem = this.state.list.map((number)=>{
+    //     return <li key={number.id}>{number.value}</li>
+    // })
     return (
       <>
-        <form action="">
+        <form onSubmit={this.handleSubmit}>
             <label htmlFor="">Name</label>
-            <input type="text" value={this.state.newItem} onChange={e => this.handleChange("newItem", e.target.value)} />
-            <input type="submit" value="SUBMIT" onClick={this.handleSubmit} />
+            <input type="text" value={this.state.text} onChange={this.handleChange} />
+            <button type='submit'>SUBMIT</button>
         </form>
-        <ul>
-            {listItem}
-        </ul>
       </>
     )
   }
