@@ -8,40 +8,63 @@ import Parent from './components/Parent'
 import Child from './components/Child'
 import Form from './components/Form'
 import TodoList from './components/TodoList'
+import AppTodo from './AppTodo'
+import { Routes ,Route, BrowserRouter } from 'react-router-dom'
+import Nav from './components/Nav'
+import SimpleComponent from './components/SimpleComponent'
+import HelloHoc from './components/HelloHoc'
+import styling from './components/hoc/HeigherComp'
+import WrapperComp from './components/hoc/WrapperComp'
+import WithCounter from './components/counter/WithCounter'
+import ClickCounter from './components/counter/ClickCounter'
+import HoverCounter from './components/counter/HoverCounter'
+import Counter from './components/redux/Counter'
 
-class App extends Component {
+function App(){
+  const StyleComponent1 = styling(WrapperComp, {color:'blue', fontSize:'40px'})
+  const StyleComponent2 = styling(WrapperComp, {color:'red', fontSize:'40px'})
+  const ClickCounterWithCount = WithCounter(ClickCounter)
+  const HoverCounterWithCount = WithCounter(HoverCounter)
 
-  constructor(props){
-    super(props)
-    this.state = {
-      todos: []
-    }
+  const AllCount = () =>{
+    return(
+      <>
+      <ClickCounterWithCount/>
+      <HoverCounterWithCount/>
+      </>
+    )
   }
-
-  addTodo = (todo) => {
-    this.setState({todos: [...this.state.todos, todo]})
-  }
-
-  removeTodo = (todoToRemove) => {
-    this.setState({todos: this.state.todos.filter(todo => todo !== todoToRemove)})
-  }
-  render(){
     return (
       <>
-        <Header/>
+      {/* <Header/> */}
+       {/* <Home /> */}
+       {/* <AppTodo/> */}
+       
+      <BrowserRouter>
+          <Nav/>
+        <Routes>
+          {/* <Route path='/' element={<Nav/>} /> */}
+          <Route path='/parent' element={<Parent/>} />
+          <Route path='/showName' element={<Form/>} />
+          <Route path='/todo' element={<AppTodo/>} />
+          <Route path='/hoc' element={<HelloHoc/>} />
+          <Route path='/styling' element={<StyleComponent1/>} />
+          <Route path='/styling2' element={<StyleComponent2/>} />
+          <Route path='/counter' element={<AllCount/>} />
+          <Route path='/counter2' element={<Counter/>} />
+          
+        </Routes>
+      </BrowserRouter>
+        {/* <Header/>
         <Home />
-        <Form onAddTodo={this.addTodo}/>
-        <TodoList onRemoveTodo={this.removeTodo} todos={this.state.todos}/>
-        {/* <Home name='Isna Ayu Muarofah' title="Welcome"/> */}
-        {/* <Home name='Isna Ayu' address="Ragunan" age="22"/> */}
-        {/* <Parent name="Andi" address="Ragunan" age="23"/> */}
-        {/* <Child name="Isna" address="Ragunan" age="23"/> */}
+        <AppTodo/> */}
   
   
       </>
     )
-  }
   
 }
 
 export default App
+
+

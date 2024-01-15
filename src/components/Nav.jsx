@@ -1,9 +1,11 @@
-import React from "react";
+import React, { Component } from 'react'
+import { Link, Outlet } from 'react-router-dom'
 
-const Header = () => {
-  return (
-    <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+export default class Nav extends Component {
+  render() {
+    return (
+      <>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -22,24 +24,16 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
-                  Home
-                </a>
+                <Link className="nav-link active" aria-current="page" to="/parent">Home</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Link
-                </a>
+              <Link className="nav-link active" aria-current="page" to="/showName">Show Name</Link>
               </li>
               <li className="nav-item">
-                <a
-                  className="nav-link disabled"
-                  href="#"
-                  tabindex="-1"
-                  aria-disabled="true"
-                >
-                  Disabled
-                </a>
+              <Link className="nav-link active" aria-current="page" to="/todo">TodoList</Link>
+              </li>
+              <li className="nav-item">
+              <Link className="nav-link active" aria-current="page" to="/counter">Counter</Link>
               </li>
             </ul>
             <form className="d-flex">
@@ -56,8 +50,11 @@ const Header = () => {
           </div>
         </div>
       </nav>
-    </>
-  );
-};
 
-export default Header;
+      <Outlet/>
+      </>
+    )
+  }
+}
+
+// export default Nav
