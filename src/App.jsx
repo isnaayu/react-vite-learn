@@ -19,6 +19,10 @@ import WithCounter from './components/counter/WithCounter'
 import ClickCounter from './components/counter/ClickCounter'
 import HoverCounter from './components/counter/HoverCounter'
 import Counter from './components/redux/Counter'
+import TodoApp from './components/context/TodoApp'
+import ReduxContextApp from './components/redux-context/ReduxContextApp'
+import HookComponent from './components/hook/HookComponent'
+import { CustomHooks } from './components/hook/CustomHooks'
 
 function App(){
   const StyleComponent1 = styling(WrapperComp, {color:'blue', fontSize:'40px'})
@@ -52,6 +56,10 @@ function App(){
           <Route path='/styling2' element={<StyleComponent2/>} />
           <Route path='/counter' element={<AllCount/>} />
           <Route path='/counter2' element={<Counter/>} />
+          <Route path='/context' element={<TodoApp/>} />
+          <Route path='/redux-context' element={<ReduxContextApp/>} />
+          <Route path='/hook' element={<HookComponent/>} />
+          <Route path='/custom-hook' element={<CustomHooks/>} />
           
         </Routes>
       </BrowserRouter>
